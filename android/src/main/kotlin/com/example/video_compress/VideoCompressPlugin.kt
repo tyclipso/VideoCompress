@@ -13,7 +13,6 @@ import com.otaliastudios.transcoder.strategy.RemoveTrackStrategy
 import com.otaliastudios.transcoder.strategy.TrackStrategy
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.BinaryMessenger
-import com.otaliastudios.transcoder.internal.Logger
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
@@ -32,7 +31,6 @@ class VideoCompressPlugin : MethodCallHandler, FlutterPlugin {
     private var _context: Context? = null
     private var _channel: MethodChannel? = null
     private val TAG = "VideoCompressPlugin"
-    private val LOG = Logger(TAG)
     private var transcodeFuture:Future<Void>? = null
     var channelName = "video_compress"
 
@@ -68,7 +66,6 @@ class VideoCompressPlugin : MethodCallHandler, FlutterPlugin {
             }
             "setLogLevel" -> {
                 val logLevel = call.argument<Int>("logLevel")!!
-                Logger.setLogLevel(logLevel)
                 result.success(true);
             }
             "cancelCompression" -> {
